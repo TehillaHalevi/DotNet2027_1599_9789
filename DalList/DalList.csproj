@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Dal</RootNamespace>
+    <RootNamespace>"Dal"</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

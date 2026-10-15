@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public record Student(
-        int studentId,
-        string nameStudent,
-        int examId,
-        int grade);
 
-    
+    public record Student(int studentId, string studentName, int ExamId, int grade)
+    {
+        
+    }
 }
-

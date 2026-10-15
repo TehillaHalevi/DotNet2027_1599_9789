@@ -9,7 +9,6 @@ namespace Dal
         {
             return 0;
         }
-
         public void Delete(int id)
         {
             

@@ -6,10 +6,5 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public record ExamineeQuestion(
-        int studentId,
-        int examId,
-        int questionId,
-        int chosenAnsId
-        );
+    public record ExamineeQuestion( int studentId,int examId,int questionId, int chosenAnsId);
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public record Answer(
-        int answerId,
-        int questionId,
-        string answerContent);
+    public record Answer(int answerId, int questionId, string answerContent)
+    {
+
+    }
 }

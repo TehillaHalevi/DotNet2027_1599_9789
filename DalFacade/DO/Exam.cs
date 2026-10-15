@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public record Exam(
-        int examId,
-        ExamTopic examTopic,
-        DateTime xamDate,
-        int  numberOfQuestions);
-    
+
+    public record Exam(int examId, ExamTopic examTopic, DateTime examDate, int numberOfQuestions)
+    {
+    }
+
 }

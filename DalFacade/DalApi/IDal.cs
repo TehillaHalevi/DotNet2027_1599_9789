@@ -14,6 +14,8 @@ namespace DalApi
         IQuestion Question { get; }
         IExamineeQuestion ExamineeQuestion { get; }
         IAnswer Answer { get; }
+        
+        
 
     }
 }

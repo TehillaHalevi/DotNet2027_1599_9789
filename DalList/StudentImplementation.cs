@@ -18,7 +18,16 @@ namespace Dal
         }
         public void Delete(int id)
         {
-            
+            int index = students.FindIndex(x => x?.studentId == id);
+            try
+            {
+                students.RemoveAt(index);
+            }
+            catch (NotExistException e)
+            {
+                throw new NotExistException($"A student of Id: {id} not exist", e);
+            }
+
         }
 
         public Student? Read(int id)

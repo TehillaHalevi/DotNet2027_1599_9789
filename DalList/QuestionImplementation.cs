@@ -34,7 +34,7 @@ namespace Dal
 
         public void Update(Question item)
         {
-            int index = examineeQuestions.FindIndex(x => x?.questionId == item.examineeQuestionId);
+            int index = questions.FindIndex(x => x?.questionId == item.questionId);
             try
             {
                 questions.Remove(questions[index]);

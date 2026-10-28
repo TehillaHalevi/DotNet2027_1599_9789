@@ -9,6 +9,8 @@ namespace DO
 
     public record Exam(int examId, ExamTopic examTopic, DateTime examDate, int numberOfQuestions)
     {
+      
+        
     }
 
 }

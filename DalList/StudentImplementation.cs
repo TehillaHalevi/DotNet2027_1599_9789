@@ -1,5 +1,7 @@
-﻿using DO;
-using DalApi;
+﻿using DalApi;
+using DO;
+using Exceptions;
+using static Dal.DataSource;
 
 namespace Dal
 {
@@ -7,7 +9,11 @@ namespace Dal
     {
         public int Create(Student item)
         {
-            return 0;
+            int index = students.FindIndex(x => x?.studentId ==item.studentId);
+            if (index != -1)
+                throw new ExistsIDException("this id is already exist");
+            students.Add(item);
+            return item.studentId;
         }
         public void Delete(int id)
         {
@@ -16,13 +22,15 @@ namespace Dal
 
         public Student? Read(int id)
         {
-            Student student = null;
-            return student;
+            int index = students.FindIndex(x => x?.studentId == id);
+            if (index == -1)
+                return null;
+            return students[index];
         }
 
         public List<Student> ReadAll()
         {
-            return new List<Student>();
+            return new List<Student>(students);
         }
 
         public void Update(Student item)

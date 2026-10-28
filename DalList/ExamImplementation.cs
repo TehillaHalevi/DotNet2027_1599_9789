@@ -1,5 +1,6 @@
-﻿using DO;
-using DalApi;
+﻿using DalApi;
+using DO;
+using static Dal.DataSource;
 
 namespace Dal
 {
@@ -7,7 +8,9 @@ namespace Dal
     {
         public int Create(Exam item)
         {
-            throw new NotImplementedException();
+            Exam ex = item with { examId = Config.ExamId };
+            exams.Add(ex);
+            return ex.examId;
         }
 
         public void Delete(int id)
@@ -17,12 +20,15 @@ namespace Dal
 
         public Exam? Read(int id)
         {
-            throw new NotImplementedException();
+            int index = exams.FindIndex(x => x?.examId == id);
+            if (index == -1)
+                return null;
+            return exams[index];
         }
 
         public List<Exam> ReadAll()
         {
-            throw new NotImplementedException();
+            return new List<Exam>(exams);
         }
 
         public void Update(Exam item)

@@ -1,5 +1,6 @@
-﻿using DO;
-using DalApi;
+﻿using DalApi;
+using DO;
+using static Dal.DataSource;
 
 namespace Dal
 {
@@ -7,7 +8,9 @@ namespace Dal
     {
         public int Create(ExamineeOuestion item)
         {
-            throw new NotImplementedException();
+            ExamineeOuestion exq = item with { examineeOuestionId = Config.ExamineeOuestionId };
+            examineeQuestions.Add(exq);
+            return exq.examineeOuestionId;
         }
 
         public void Delete(int id)
@@ -17,12 +20,15 @@ namespace Dal
 
         public ExamineeOuestion? Read(int id)
         {
-            throw new NotImplementedException();
+            int index = examineeQuestions.FindIndex(x => x?.examineeOuestionId == id);
+            if (index == -1)
+                return null;
+            return examineeQuestions[index];
         }
 
         public List<ExamineeOuestion> ReadAll()
         {
-            throw new NotImplementedException();
+            return new List<ExamineeOuestion>(examineeQuestions);
         }
 
         public void Update(ExamineeOuestion item)

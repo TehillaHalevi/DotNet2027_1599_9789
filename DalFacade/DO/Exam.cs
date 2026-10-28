@@ -9,6 +9,10 @@ namespace DO
 
     public record Exam(int examId, ExamTopic examTopic, DateTime examDate, int numberOfQuestions)
     {
+        public Exam() : this(0, 0,DateTime.Now,0)
+        {
+
+        }
     }
 
 }

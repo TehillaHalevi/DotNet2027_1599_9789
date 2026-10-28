@@ -9,6 +9,16 @@ namespace DO
 
     public record Student(int studentId, string studentName, int ExamId, int grade)
     {
-        
+        public Student() : this(0, "undefined",0,0)
+        {
+
+        }
+
+        public int studentId
+        {
+            get { return studentId; }
+            
+        }
+
     }
 }

@@ -1,5 +1,7 @@
-﻿using DO;
-using DalApi;
+﻿using DalApi;
+using DO;
+using Exceptions;
+using static Dal.DataSource;
 
 namespace Dal
 {
@@ -27,7 +29,16 @@ namespace Dal
 
         public void Update(Answer item)
         {
-            throw new NotImplementedException();
+            int index = answers.FindIndex(x => x?.answerId == item.answerId);
+            try
+            {
+                answers.Remove(answers[index]);
+                answers.Add(item);
+            }
+            catch (NotExistException e)
+            {
+                throw new NotExistException($"A student of Id: {item.answerId} not exist", e);
+            }
         }
     }
 }

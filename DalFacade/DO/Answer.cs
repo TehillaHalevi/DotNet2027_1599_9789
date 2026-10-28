@@ -8,6 +8,10 @@ namespace DO
 {
     public record Answer(int answerId, int questionId, string answerContent)
     {
+        public Answer():this(0,0,"undefined")
+        {
+            
+        }
 
     }
 }

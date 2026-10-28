@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 namespace DO
 {
     
-    public record ExamineeOuestion(int studentId,int examId, int questionId,int chosenAnsId)
+    public record ExamineeOuestion(int examineeQuestionId, int studentId,int examId, int questionId,int chosenAnsId)
     {
+        public ExamineeOuestion() : this(0,0, 0,0,0)
+        {
 
+        }
     }
 }

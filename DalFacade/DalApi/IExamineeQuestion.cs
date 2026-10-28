@@ -2,6 +2,6 @@
 
 namespace DalApi;
 
-public interface IExamineeQuestion : ICrud<ExamineeQuestion>
+public interface IExamineeQuestion : ICrud<ExamineeOuestion>
 {
 }

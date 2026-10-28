@@ -16,13 +16,13 @@ using DO;
             public static int AnswerId => answerId++;
 
 
-            //שדה רץ עבור המחלקה student
-            internal const int minStudentId = 100;
-            static private int studentId = minStudentId;
-            public static int StudentId => studentId++;
+            //שדה רץ עבור המחלקה ExamineeOuestion
+            internal const int minExamineeOuestionId = 100;
+            static private int examineeOuestionId = minExamineeOuestionId;
+            public static int ExamineeOuestionId => examineeOuestionId++;
 
 
-            //שדה רץ עבור המחלקה student
+            //שדה רץ עבור המחלקה Exam
             internal const int minExamId = 100;
             static private int examId = minExamId;
             public static int ExamId => examId++;

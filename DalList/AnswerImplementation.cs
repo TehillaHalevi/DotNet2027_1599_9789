@@ -9,7 +9,9 @@ namespace Dal
     {
         public int Create(Answer item)
         {
-            throw new NotImplementedException();
+            Answer ans = item with { answerId = Config.AnswerId };
+            answers.Add(ans);
+            return ans.answerId;
         }
 
         public void Delete(int id)
@@ -19,12 +21,15 @@ namespace Dal
 
         public Answer? Read(int id)
         {
-            throw new NotImplementedException();
+            int index = answers.FindIndex(x => x?.answerId == id);
+            if (index == -1)
+                return null;
+            return answers[index];
         }
 
         public List<Answer> ReadAll()
         {
-            throw new NotImplementedException();
+            return new List<Answer>(answers);
         }
 
         public void Update(Answer item)

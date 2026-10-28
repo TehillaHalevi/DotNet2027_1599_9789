@@ -16,7 +16,16 @@ namespace Dal
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            int index = students.FindIndex(x => x?.studentId == id);
+            try
+            {
+                students.RemoveAt(index);
+            }
+            catch (NotExistException e)
+            {
+                throw new NotExistException($"A student of Id: {id} not exist", e);
+            }
+
         }
 
         public ExamineeOuestion? Read(int id)

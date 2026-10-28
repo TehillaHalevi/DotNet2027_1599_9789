@@ -9,9 +9,9 @@ namespace Dal
     {
         public int Create(ExamineeOuestion item)
         {
-            ExamineeOuestion exq = item with { examineeOuestionId = Config.ExamineeOuestionId };
+            ExamineeOuestion exq = item with { examineeQuestionId = Config.ExamineeOuestionId };
             examineeQuestions.Add(exq);
-            return exq.examineeOuestionId;
+            return exq.examineeQuestionId;
         }
 
         public void Delete(int id)
@@ -21,7 +21,7 @@ namespace Dal
 
         public ExamineeOuestion? Read(int id)
         {
-            int index = examineeQuestions.FindIndex(x => x?.examineeOuestionId == id);
+            int index = examineeQuestions.FindIndex(x => x?.examineeQuestionId == id);
             if (index == -1)
                 return null;
             return examineeQuestions[index];

@@ -25,7 +25,6 @@ namespace Dal
             {
                 throw new NotExistException($"A student of Id: {id} not exist", e);
             }
-
         }
 
         public Answer? Read(int id)

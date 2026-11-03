@@ -6,7 +6,15 @@ namespace DalTest
     public static class Initialization
     {
         static IDal s_dal;
-
+        public static void Initialize(IDal dal)
+        {
+            s_dal = dal;
+            CreateStudents();
+            CreateAnswer();
+            CreateQuestion();
+            CreateExam();
+            CreateExamineeQuestion();
+        }
         private static void CreateAnswer()
         {
             s_dal.Answer.Create(new Answer(0, 100, "answer 1"));
@@ -84,7 +92,6 @@ namespace DalTest
         private static void CreateExam()
         {
             s_dal.Exam.Create(new Exam(0, ExamTopic.MATH, DateTime.Now,5));
-
         }
     }
 }

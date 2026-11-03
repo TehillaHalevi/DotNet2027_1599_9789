@@ -26,12 +26,10 @@ namespace Dal
                 return null;
             return answers[index];
         }
-
         public List<Answer> ReadAll()
         {
             return new List<Answer>(answers);
         }
-
         public void Update(Answer item)
         {
             int index = answers.FindIndex(x => x?.answerId == item.answerId);

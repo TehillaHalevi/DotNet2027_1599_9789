@@ -16,7 +16,7 @@ namespace Dal
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+
         }
 
         public ExamineeOuestion? Read(int id)

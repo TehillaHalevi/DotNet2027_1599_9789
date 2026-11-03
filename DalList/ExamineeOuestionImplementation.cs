@@ -7,9 +7,9 @@ namespace Dal
 {
     internal class ExamineeOuestionImplementation : IExamineeQuestion
     {
-        public int Create(ExamineeOuestion item)
+        public int Create(ExamineeQuestion item)
         {
-            ExamineeOuestion exq = item with { examineeQuestionId = Config.ExamineeOuestionId };
+            ExamineeQuestion exq = item with { examineeQuestionId = Config.ExamineeOuestionId };
             examineeQuestions.Add(exq);
             return exq.examineeQuestionId;
         }
@@ -28,7 +28,7 @@ namespace Dal
 
         }
 
-        public ExamineeOuestion? Read(int id)
+        public ExamineeQuestion? Read(int id)
         {
             int index = examineeQuestions.FindIndex(x => x?.examineeQuestionId == id);
             if (index == -1)
@@ -36,12 +36,12 @@ namespace Dal
             return examineeQuestions[index];
         }
 
-        public List<ExamineeOuestion> ReadAll()
+        public List<ExamineeQuestion> ReadAll()
         {
-            return new List<ExamineeOuestion>(examineeQuestions);
+            return new List<ExamineeQuestion>(examineeQuestions);
         }
 
-        public void Update(ExamineeOuestion item)
+        public void Update(ExamineeQuestion item)
         {
             int index = examineeQuestions.FindIndex(x => x?.examineeQuestionId == item.examineeQuestionId);
             try

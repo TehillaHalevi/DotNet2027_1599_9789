@@ -7,7 +7,7 @@ using DO;
         static internal List<Exam> exams = new List<Exam>();
         static internal List<Student> students = new List<Student>();
         static internal List<Question> questions = new List<Question>();
-        static internal List<ExamineeOuestion> examineeQuestions = new List<ExamineeOuestion>();
+        static internal List<ExamineeQuestion> examineeQuestions = new List<ExamineeQuestion>();
         static internal class Config
         {
            //שדה רץ עבור המחלקה answer

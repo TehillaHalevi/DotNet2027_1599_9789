@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-
     public record Question(int questionId, QuestionTopic questionTopic,string questionContent, int correctAnsId)
     {
         public Question() : this(0, 0, "undefined",0)

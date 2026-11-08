@@ -12,6 +12,47 @@ namespace DalTest
     {
         static IDal s_dal = new DalList();
 
+        private static void RunMain()
+        {
+            string selection = "start";
+            try
+            {
+                while (selection != "0")
+                {
+
+                    PrintMainMenu();
+                    selection = Console.ReadLine();
+                    switch (selection)
+                    {
+                        case "1":
+                            SubMenu<Student>("student", s_dal.Student, GetStudent);
+                            break;
+                        case "2":
+                            SubMenu<Question>("question", s_dal.Question, GetQuestion);
+                            break;
+                        case "3":
+                            SubMenu<Answer>("answer", s_dal.Answer, GetAnswer);
+                            break;
+                        case "4":
+                            SubMenu<ExamineeQuestion>("examineeQuestion", s_dal.ExamineeQuestion, GetExamineeQuestion);
+                            break;
+                        case "5":
+                            SubMenu<Exam>("exam", s_dal.Exam, GetExam);
+                            break;
+                        case "0":
+                            break;
+                        default:
+                            Console.WriteLine("worng input, Please enter again");
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error");
+                Console.WriteLine(ex.Message);
+            }
+        }
         private static void PrintMainMenu()
         {
             Console.WriteLine("======Main Menu=====");
@@ -101,6 +142,7 @@ namespace DalTest
 
         }
 
+
         private static int GetIntInput(string message)
         {
             int value;
@@ -149,6 +191,8 @@ namespace DalTest
 
             return value;
         }
+
+
        
         private static Student GetStudent(bool isupdate) {
             int studentId = GetIntInput("Enter student Id: ");
@@ -217,7 +261,19 @@ namespace DalTest
                 questionCount);
         }
 
-        
+
+        static void Main(string[] args)
+        {
+            try
+            {
+                Initialization.Initialize(s_dal);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error");
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }
 

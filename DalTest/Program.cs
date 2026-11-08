@@ -193,6 +193,19 @@ namespace DalTest
         }
 
 
+       
+        private static Student GetStudent(bool isupdate) {
+            int studentId = GetIntInput("Enter student Id: ");
+            string studentName = GetStringInput("Enter student name: ");
+            int ExamId = GetIntInput("Enter exam Id: ");
+            int grade = GetIntInput("Enter grade: ");
+           
+            return new Student(
+                studentId,
+                studentName,
+                ExamId,
+                grade);
+        }
         private static Question GetQuestion(bool isupdate)
         {
             int id = GetIntInput("Enter question Id: ");

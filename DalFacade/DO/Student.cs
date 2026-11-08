@@ -14,11 +14,7 @@ namespace DO
 
         }
 
-        public int studentId
-        {
-            get { return studentId; }
-            
-        }
+        
 
     }
 }

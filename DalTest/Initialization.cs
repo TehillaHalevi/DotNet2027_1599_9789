@@ -1,6 +1,5 @@
 ﻿using DO;
 using DalApi;
-
 namespace DalTest
 {
     public static class Initialization
@@ -73,6 +72,7 @@ namespace DalTest
             s_dal.ExamineeQuestion.Create(new ExamineeQuestion(0, 555, 100, 102, 103));
             s_dal.ExamineeQuestion.Create(new ExamineeQuestion(0, 555, 100, 103, 101));
             s_dal.ExamineeQuestion.Create(new ExamineeQuestion(0, 555, 100, 104, 100));
+
         private static void CreateStudents()
         {
             s_dal.Student.Create(new Student(111, "sari", 1, 9));

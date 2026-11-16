@@ -13,31 +13,48 @@ namespace Dal
     {
         public int Create(Exam item)
         {
+            WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
+            , "Create exam");
             Exam ex = item with { examId = Config.ExamId };
             exams.Add(ex);
+            WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
+            , "The exam was successfully created with ID: " + ex.examId);
             return ex.examId;
         }
 
 
         public void Delete(int id)
         {
-            int index = students.FindIndex(x => x?.studentId == id);
+            WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
+             , "Delete exam " + id);
+            int index = exams.FindIndex(x => x?.examId == id);
             try
             {
-                students.RemoveAt(index);
+                exams.RemoveAt(index);
             }
             catch (NotExistException e)
             {
-                throw new NotExistException($"A student of Id: {id} not exist", e);
+                WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
+               , $"Not found exam {id} to delete");
+                wirteToLog(e.Message);
+                throw new NotExistException($"A exam of Id: {id} not exist", e);
             }
-
+            WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
+            , "The exam was successfully deleted with ID: " + id);
+   
         }
 
         public Exam? Read(int id)
         {
+            WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
+            , "Read exam " + id);
             int index = exams.FindIndex(x => x?.examId == id);
             if (index == -1)
+            {
+                WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
+              , $"Not found to read exam " + id);
                 return null;
+            }
             return exams[index];
         }
 
@@ -49,6 +66,8 @@ namespace Dal
 
         public void Update(Exam item)
         {
+            WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
+            , "Update exam " + item.examId);
             int index = exams.FindIndex(x => x?.examId == item.examId);
             try
             {
@@ -57,8 +76,15 @@ namespace Dal
             }
             catch (NotExistException e)
             {
-                throw new NotExistException($"A student of Id: {item.examId} not exist", e);
+                WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
+               , $"Not found exam {item.examId} to update");
+                wirteToLog(e.Message);
+                throw new NotExistException($"A exam of Id: {item.examId} not exist", e);
             }
+
+            WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
+            , "The exam was successfully updated with ID: " + item.examId);
+
         }
     }
 }

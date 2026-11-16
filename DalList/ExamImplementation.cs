@@ -1,6 +1,8 @@
 ﻿using DalApi;
 using DO;
 using Exceptions;
+using Tools;
+using System.Reflection;
 using static Dal.DataSource;
 
 using static Dal.DataSource;
@@ -41,6 +43,7 @@ namespace Dal
 
         public List<Exam> ReadAll()
         {
+            WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name, "ReadAll exam");
             return new List<Exam>(exams);
         }
 

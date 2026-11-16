@@ -1,7 +1,8 @@
 ﻿using DalApi;
 using DO;
-using static Dal.DataSource;
 using Exceptions;
+using System.Reflection;
+using static Dal.DataSource;
 
 namespace Dal
 {
@@ -38,6 +39,7 @@ namespace Dal
 
         public List<Question> ReadAll()
         {
+            WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name, "ReadAll question");
             return new List<Question>(questions);
         }
 

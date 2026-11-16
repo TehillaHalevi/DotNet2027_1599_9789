@@ -10,7 +10,7 @@ namespace DalTest
   
     internal class Program
     {
-        static IDal s_dal = new DalList();
+        static IDal s_dal = new Dal.DalList();
 
         private static void RunMain()
         {
@@ -142,7 +142,6 @@ namespace DalTest
 
         }
 
-
         private static int GetIntInput(string message)
         {
             int value;
@@ -192,8 +191,6 @@ namespace DalTest
             return value;
         }
 
-
-       
         private static Student GetStudent(bool isupdate) {
             int studentId = GetIntInput("Enter student Id: ");
             string studentName = GetStringInput("Enter student name: ");
@@ -261,7 +258,6 @@ namespace DalTest
                 questionCount);
         }
 
-
         static void Main(string[] args)
         {
             try
@@ -273,6 +269,7 @@ namespace DalTest
                 Console.WriteLine("error");
                 Console.WriteLine(ex.Message);
             }
+            RunMain();
         }
     }
 }

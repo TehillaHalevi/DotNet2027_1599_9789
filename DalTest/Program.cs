@@ -142,7 +142,6 @@ namespace DalTest
 
         }
 
-
         private static int GetIntInput(string message)
         {
             int value;
@@ -192,8 +191,6 @@ namespace DalTest
             return value;
         }
 
-
-       
         private static Student GetStudent(bool isupdate) {
             int studentId = GetIntInput("Enter student Id: ");
             string studentName = GetStringInput("Enter student name: ");
@@ -260,7 +257,6 @@ namespace DalTest
                 testDate,
                 questionCount);
         }
-
 
         static void Main(string[] args)
         {

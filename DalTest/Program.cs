@@ -1,6 +1,7 @@
 ﻿using Dal;
 using DalApi;
 using DO;
+using Tools;
 using System;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -39,6 +40,9 @@ namespace DalTest
                         case "5":
                             SubMenu<Exam>("exam", s_dal.Exam, GetExam);
                             break;
+                        case "6":
+                            LogManager.CleanOldLogs();
+                            break;
                         case "0":
                             break;
                         default:
@@ -61,9 +65,10 @@ namespace DalTest
             Console.WriteLine("3. Answer");
             Console.WriteLine("4. ExamineeQuestion");
             Console.WriteLine("5. Exam");
+            Console.WriteLine("=======================");
+            Console.WriteLine("6. clear the history of logs");
             Console.WriteLine("0. Exit");
             Console.Write("Select the desired extension: ");
-
         }
         private static void PrintSecondMenu(string name) {
             Console.WriteLine();

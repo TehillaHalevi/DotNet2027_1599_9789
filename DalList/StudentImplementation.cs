@@ -1,6 +1,8 @@
 ﻿using DalApi;
 using DO;
 using Exceptions;
+using Tools;
+using System.Reflection;
 using System.Linq.Expressions;
 using System.Reflection;
 using Tools;
@@ -63,6 +65,7 @@ namespace Dal
         public List<Student> ReadAll()
         {
 
+            WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name, "ReadAll students");
             return new List<Student>(students);
         }
 

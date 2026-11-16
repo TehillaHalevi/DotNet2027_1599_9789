@@ -55,7 +55,7 @@ namespace DalTest
         }
         private static void PrintMainMenu()
         {
-            Console.WriteLine("======Main Menu=====");
+            Console.WriteLine("====== Main Menu ======");
             Console.WriteLine("1. Student");
             Console.WriteLine("2. Question");
             Console.WriteLine("3. Answer");

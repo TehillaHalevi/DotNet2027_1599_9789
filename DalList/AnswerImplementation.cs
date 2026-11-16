@@ -39,7 +39,6 @@ namespace Dal
         public List<Answer> ReadAll()
         {
             WirteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name, "ReadAll answer");
-
             return new List<Answer>(answers);
         }
         public void Update(Answer item)

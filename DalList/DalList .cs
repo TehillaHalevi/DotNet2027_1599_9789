@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace Dal
 {
-    public class DalList : IDal
+     sealed internal class DalList : IDal
     {
+        static private  readonly DalList instance= new DalList();
+        static public DalList Instance { get { return instance; } }
+        private DalList()
+        {
+
+        }
         public IStudent Student => new StudentImplementation();
         public IExam Exam =>  new ExamImplementation();
 

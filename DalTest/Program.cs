@@ -1,4 +1,4 @@
-﻿using Dal;
+﻿//using Dal;
 using DalApi;
 using DO;
 using Tools;
@@ -11,7 +11,7 @@ namespace DalTest
   
     internal class Program
     {
-        static IDal s_dal = new Dal.DalList();
+        static IDal s_dal = DalApi.Factory.Get;
 
         private static void RunMain()
         {
@@ -267,7 +267,7 @@ namespace DalTest
         {
             try
             {
-                Initialization.Initialize(s_dal);
+                Initialization.Initialize();
             }
             catch (Exception ex)
             {

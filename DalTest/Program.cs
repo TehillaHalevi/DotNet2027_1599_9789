@@ -13,6 +13,7 @@ namespace DalTest
     {
         static IDal s_dal = DalApi.Factory.Get;
 
+        //פונקציה כניסה לתפריט הראשי
         private static void RunMain()
         {
             string selection = "start";
@@ -57,6 +58,8 @@ namespace DalTest
                 Console.WriteLine(ex.Message);
             }
         }
+
+        //הדפסת התפריט הראשי
         private static void PrintMainMenu()
         {
             Console.WriteLine("====== Main Menu ======");
@@ -70,6 +73,8 @@ namespace DalTest
             Console.WriteLine("0. Exit");
             Console.Write("Select the desired extension: ");
         }
+
+        //לאחר הכניסה לישות מסוימת, יש לבחור את הפעולה הרצויה
         private static void PrintSecondMenu(string name) {
             Console.WriteLine();
             Console.WriteLine($"===== {name} Menu =====");
@@ -81,6 +86,8 @@ namespace DalTest
             Console.WriteLine("0. Back to main menu");
             Console.Write("Choose an operation: ");
         }
+
+        //ביצוע הפעולות שנבחרו ב: print second menu
         private static void SubMenu<T>(string name, ICrud<T> crud, Func<bool, T> getParams)
         {
             string selection = string.Empty;
@@ -147,6 +154,7 @@ namespace DalTest
 
         }
 
+        //פונקציות המרה לקלט מהמשתמש
         private static int GetIntInput(string message)
         {
             int value;
@@ -196,6 +204,7 @@ namespace DalTest
             return value;
         }
 
+        //פונקציות ליצירה/עדכון ישות שנשלחת בהתאמה לישות לפונקציה הגנרית subMenu
         private static Student GetStudent(bool isupdate) {
             int studentId = GetIntInput("Enter student Id: ");
             string studentName = GetStringInput("Enter student name: ");

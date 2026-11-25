@@ -8,7 +8,6 @@ namespace DalApi
 {
     public interface ICrud<T>
     {
-
         int Create(T item); //Creates new entity object in DAL
         T? Read(int id); //Reads entity object by its ID 
         T? Read(Func<T, bool> filter);// Reads entity object by its filter

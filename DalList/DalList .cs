@@ -21,7 +21,7 @@ namespace Dal
 
         public IQuestion Question =>  new QuestionImplementation();
 
-        public IExamineeQuestion ExamineeQuestion => new ExamineeOuestionImplementation();
+        public IExamineeQuestion ExamineeQuestion => new ExamineeQuestionImplementation();
 
         public IAnswer Answer =>  new AnswerImplementation();
     }

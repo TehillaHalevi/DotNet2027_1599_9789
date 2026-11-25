@@ -1,6 +1,7 @@
 ﻿using DalApi;
 using DO;
 using Exceptions;
+using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
 using Tools;
@@ -18,8 +19,8 @@ namespace Dal
             int index = students.FindIndex(x => x?.studentId == item.studentId);
             if (index != -1)
             {
+                LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name, "Student creation failed");
                 throw new ExistsIDException("this id is already exist");
-                LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name,"Student creation failed");
             }
             students.Add(item);
             LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
@@ -30,18 +31,26 @@ namespace Dal
         {
             LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
            ,"Delete student " + id);
-            int index = students.FindIndex(x => x?.studentId == id);
-            try
+            var findStudent = from student in students
+                              where student.studentId == id
+                          select new
+                          {
+                              studentId = student.studentId,
+                              studentName = student.studentName,
+                              ExamId = student.ExamId,
+                              grade=student.grade
+                          };
+            if (findStudent == null)
             {
-                students.RemoveAt(index);
-            }
-            catch (NotExistException e)
-            {
+
                 LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
                 ,$"Not found student {id} to delete");
-                LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name,e.Message);
-                throw new NotExistException($"A student of Id: {id} not exist", e);
+                throw new NotExistException($"A student of Id: {id} not exist");
             }
+            var listStudents = (from student in students
+                               where student.studentId != id
+                               select student).ToList();
+            students = listStudents;
             LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
             ,"The student was successfully deleted with ID: " + id);
         }
@@ -50,42 +59,72 @@ namespace Dal
         {
             LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
             ,"Read student " + id);
-            int index = students.FindIndex(x => x?.studentId == id);
-            if (index == -1)
+            var findStudent = (from student in students
+                               where student.studentId== id
+                               select student).FirstOrDefault();
+            if (findStudent == null)
             {
                 LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
                 , $"Not found to read student " + id);
                 return null;
             }
-            return students[index];
+            return findStudent;
         }
-
-        public List<Student> ReadAll()
+        public Student? Read(Func<Student, bool> filter)
         {
+            LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
+            , "Read student by filter");
+            var findStudent = (from student in students
+                           where filter(student)
+                           select student).FirstOrDefault();
+            if (findStudent == null)
+            {
+                LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
+                , $"Not found to read student that meets the condition");
+                return null;
+            }
+            return findStudent;
+        }
+        List<Student?> ICrud<Student>.ReadAll(Func<Student, bool>? filter)
+        {
+            if(filter == null)
+            {
 
-            LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name, "ReadAll students");
-            return new List<Student>(students);
+                LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name, "ReadAll students");
+                return new List<Student>(students);
+            }
+            LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name, "ReadAll students by filter");
+            var listStudents = (from student in students
+                               where filter(student)
+                               select student).ToList();
+            return listStudents;
         }
 
         public void Update(Student item)
         {
             LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
             , "Update student " + item.studentId);
-            int index = students.FindIndex(x => x?.studentId == item.studentId);
-            try
-            {
-                students.Remove(students[index]);
-                students.Add(item);
-            }
-            catch (NotExistException e)
+            var findStudent = from student in students
+                              where student.studentId == item.studentId
+                              select new
+                              {
+                                  studentId = student.studentId,
+                                  studentName = student.studentName,
+                                  ExamId = student.ExamId,
+                                  grade = student.grade
+                              };
+            if (findStudent == null)
             {
                 LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
-                , $"Not found student {item.studentId} to update");
-                LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name,e.Message);
-                throw new NotExistException($"A student of Id: {item.studentId} not exist", e);
+               , $"Not found student {item.studentId} to update");
+                throw new NotExistException($"A student of Id: {item.studentId} not exist");
             }
+                Delete(item.studentId);
+                students.Add(item);
             LogManager.WriteToLog(MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name
-            , "The student was successfully updated with ID: " + item.studentId);
+           , "The student was successfully updated with ID: " + item.studentId);
         }
+
+        
     }
 }

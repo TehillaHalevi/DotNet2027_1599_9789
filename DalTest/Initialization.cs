@@ -4,10 +4,9 @@ namespace DalTest
 {
     public static class Initialization
     {
-        static IDal s_dal;
-        public static void Initialize(IDal dal)
+        static IDal s_dal= DalApi.Factory.Get;
+        public static void Initialize()
         {
-            s_dal = dal;
             CreateStudents();
             CreateAnswer();
             CreateQuestion();
